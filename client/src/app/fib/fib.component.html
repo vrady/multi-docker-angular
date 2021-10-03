@@ -1,0 +1,20 @@
+<div class="">
+  <form [formGroup]="fibForm" (ngSubmit)="onSubmit()">
+    <label>Enter your index:</label><br>
+    <input formControlName="index" type="text">
+
+    <button [disabled]="fibForm.invalid" type="submit">Submit</button>
+  </form>
+
+  <h3>Indexes I have seen:</h3>
+  <ng-container
+    *ngFor="let index of seenIndexes$ | async; let last = last"
+  >
+    {{ index }} {{ last ? '' : ', '}}
+  </ng-container>
+
+  <h3>Calculated Values:</h3>
+  <div *ngFor="let value of values$ | async | keyvalue">
+    For index {{ value.key }} I calculated {{ value.value }}
+  </div>
+</div>
